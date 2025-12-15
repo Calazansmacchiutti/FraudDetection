@@ -1,0 +1,109 @@
+# Configurações do Projeto de Detecção de Fraude
+
+data:
+  kaggle_dataset: "mlg-ulb/creditcardfraud"
+  raw_path: "data/raw"
+  processed_path: "data/processed"
+  filename: "creditcard.csv"
+
+preprocessing:
+  test_size: 0.3
+  validation_size: 0.1
+  random_state: 42
+  
+  # Estratégias de balanceamento
+  sampling_strategy: "smote"  # Options: smote, undersample, oversample, none
+  smote_k_neighbors: 5
+
+features:
+  # Features originais do dataset
+  pca_features: ["V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8", "V9", "V10",
+                 "V11", "V12", "V13", "V14", "V15", "V16", "V17", "V18", "V19", "V20",
+                 "V21", "V22", "V23", "V24", "V25", "V26", "V27", "V28"]
+  amount_feature: "Amount"
+  time_feature: "Time"
+  target: "Class"
+  
+  # Scaling
+  scale_amount: true
+  scale_time: true
+  scaler_type: "robust"  # Options: standard, robust, minmax
+
+models:
+  # Logistic Regression
+  logistic_regression:
+    max_iter: 1000
+    class_weight: "balanced"
+    solver: "lbfgs"
+    C: 1.0
+  
+  # Random Forest
+  random_forest:
+    n_estimators: 100
+    max_depth: 10
+    min_samples_split: 5
+    min_samples_leaf: 2
+    class_weight: "balanced"
+    n_jobs: -1
+    random_state: 42
+  
+  # XGBoost
+  xgboost:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    scale_pos_weight: 578  # ratio negatives/positives
+    random_state: 42
+    n_jobs: -1
+  
+  # LightGBM
+  lightgbm:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    num_leaves: 31
+    class_weight: "balanced"
+    random_state: 42
+    n_jobs: -1
+    verbose: -1
+
+anomaly_detection:
+  # Isolation Forest
+  isolation_forest:
+    n_estimators: 100
+    contamination: 0.001  # ~0.1% expected anomalies
+    max_samples: "auto"
+    random_state: 42
+    n_jobs: -1
+  
+  # Local Outlier Factor
+  lof:
+    n_neighbors: 20
+    contamination: 0.001
+    novelty: true
+    n_jobs: -1
+  
+  # One-Class SVM
+  ocsvm:
+    kernel: "rbf"
+    nu: 0.001
+    gamma: "scale"
+
+evaluation:
+  # Métricas principais
+  primary_metric: "average_precision"  # AUC-PR
+  
+  # Thresholds para análise
+  threshold_range: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+  
+  # Cross-validation
+  cv_folds: 5
+  cv_scoring: "average_precision"
+
+spark:
+  app_name: "FraudDetection"
+  master: "local[*]"
+  driver_memory: "4g"
+  executor_memory: "4g"
