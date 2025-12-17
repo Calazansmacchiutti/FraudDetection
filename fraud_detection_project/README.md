@@ -147,7 +147,7 @@ fraud_detection_project/
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/fraud-detection.git
+git clone https://github.com/Calazansmacchiutti/FraudDetection
 cd fraud-detection
 
 # Create virtual environment

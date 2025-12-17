@@ -2,7 +2,7 @@
 
 Sistema completo de detecção de fraude em cartões de crédito utilizando Machine Learning.
 
-## 📋 Visão Geral
+##  Visão Geral
 
 Este projeto implementa um pipeline de ML para detecção de fraudes com:
 
@@ -10,7 +10,7 @@ Este projeto implementa um pipeline de ML para detecção de fraudes com:
 - **Detecção de Anomalias**: Isolation Forest
 - **Sistema Híbrido**: Combinação de abordagens para máxima cobertura
 
-## 🏗️ Estrutura do Projeto
+##  Estrutura do Projeto
 
 ```
 fraud_detection/
@@ -41,36 +41,36 @@ fraud_detection/
 └── README.md
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
-### 1. Instalar Dependências
+### Instalar Dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Baixar Dataset
+### Baixar Dataset
 
 Baixe o dataset do Kaggle:
 - [Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud)
 
-Coloque o arquivo `creditcard.csv` em `data/raw/`
+`creditcard.csv` em `data/raw/`
 
-### 3. Executar o Notebook
+### Executar o Notebook
 
 ```bash
 cd fraud_detection
 jupyter notebook notebooks/01_fraud_detection_complete.ipynb
 ```
 
-## 📊 Dataset
+## Dataset
 
 **Credit Card Fraud Detection Dataset**
 - 284.807 transações
 - 492 fraudes (0.17%)
 - 30 features (V1-V28 são componentes PCA, + Time e Amount)
 
-## 🔧 Módulos
+## Módulos
 
 ### Data (`src/data/`)
 - Carregamento de dados
@@ -92,7 +92,7 @@ jupyter notebook notebooks/01_fraud_detection_complete.ipynb
 - Visualizações: ROC curves, PR curves, Confusion Matrix
 - Análise de threshold
 
-## 📈 Resultados Típicos
+## Resultados Típicos
 
 | Modelo | Precision | Recall | F1 | Avg Precision |
 |--------|-----------|--------|-----|---------------|
@@ -103,7 +103,7 @@ jupyter notebook notebooks/01_fraud_detection_complete.ipynb
 
 *Resultados podem variar dependendo do random seed e hiperparâmetros*
 
-## 💡 Uso em Produção
+## Uso em Produção
 
 ```python
 from src.models import FraudClassifier
@@ -119,7 +119,7 @@ proba = model.predict_proba(X_scaled)[:, 1]
 is_fraud = proba > 0.5
 ```
 
-## 📝 Métricas Importantes
+## Métricas Importantes
 
 Para dados desbalanceados, foque em:
 
@@ -130,7 +130,7 @@ Para dados desbalanceados, foque em:
 
 ⚠️ **Evite usar apenas Accuracy** - pode ser enganosa com dados desbalanceados.
 
-## 🔄 Melhorias Futuras
+## Melhorias Futuras
 
 - [ ] API REST para servir predições
 - [ ] Dashboard de monitoramento
@@ -139,12 +139,12 @@ Para dados desbalanceados, foque em:
 - [ ] Feature store
 - [ ] A/B testing framework
 
-## 📚 Referências
+## Referências
 
 - [Kaggle Credit Card Fraud Dataset](https://www.kaggle.com/mlg-ulb/creditcardfraud)
 - [Imbalanced-learn Documentation](https://imbalanced-learn.org/)
 - [XGBoost Documentation](https://xgboost.readthedocs.io/)
 
-## 📄 Licença
+## Licença
 
 MIT License
